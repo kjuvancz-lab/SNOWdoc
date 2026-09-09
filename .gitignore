@@ -1,0 +1,6 @@
+.venv/
+*.pdf
+*.txt
+*.rtf
+*.pptx
+*.avif
