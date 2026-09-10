@@ -20,7 +20,10 @@ RELEASES=("$@")
 # Deltas only from Yokohama onwards (the corpus starts at Yokohama).
 # Release-notes folder names differ per branch (australia: release-notes,
 # zurich: zurich-prbsummary-release-notes), hence the glob.
-FOLDERS=("*release-notes*" "delta-yokohama-*" "delta-zurich-*")
+FOLDERS=("*release-notes*" "delta-yokohama-*" "delta-zurich-*" "servicenow-platform/common-service-data-model-csdm")
+# Additionally copy single files matching these name globs from any product folder
+# into docs/<release>/csdm-topics/<product-folder>/.
+FILEGLOBS=("*csdm*")
 
 if [ ! -d "$CACHE/.git" ]; then
   echo "Cloning upstream (blobless, sparse) into $CACHE"
@@ -34,6 +37,7 @@ for rel in "${RELEASES[@]}"; do
   git fetch -q origin "$rel"
   patterns=()
   for f in "${FOLDERS[@]}"; do patterns+=("markdown/$f/"); done
+  for g in "${FILEGLOBS[@]}"; do patterns+=("markdown/**/$g"); done
   git sparse-checkout set --no-cone "${patterns[@]}"
   git checkout -q --detach FETCH_HEAD
   commit="$(git rev-parse HEAD)"
@@ -45,6 +49,15 @@ for rel in "${RELEASES[@]}"; do
     for d in markdown/$f; do
       [ -d "$d" ] && cp -r "$d" "$dest/$(basename "$d")"
     done
+  done
+  # Single files matching FILEGLOBS anywhere under markdown/, kept per product folder.
+  for g in "${FILEGLOBS[@]}"; do
+    while IFS= read -r -d '' file; do
+      relp="${file#markdown/}"; prod="${relp%%/*}"
+      skip=0; for fo in "${FOLDERS[@]}"; do case "$relp" in $fo/*) skip=1;; esac; done
+      [ $skip -eq 1 ] && continue
+      mkdir -p "$dest/csdm-topics/$prod"; cp "$file" "$dest/csdm-topics/$prod/"
+    done < <(find markdown -type f -name "$g" -print0)
   done
   # Root files are read straight from the commit (blobless clone fetches on demand).
   git show "FETCH_HEAD:LICENSE"   > "$dest/LICENSE"
