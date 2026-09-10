@@ -1,6 +1,6 @@
 # SNOW Doc — contents map
 
-Source folder: `C:\Users\q407593\SNOW Doc` (flat, 24 files, 1.2 GB, read-only).
+Source folder: `C:\Users\<user>\SNOW Doc` (flat, 24 files, 1.2 GB, read-only).
 Purpose of this file: tell a chat session which file, and which page range, answers a ServiceNow question. Nothing here is loaded in full; use the page ranges to read only what is needed.
 
 How to read a page range: `pdftotext -f <first> -l <last> -layout "<file>" -` or open the sidecar `.txt` (one form feed per page).

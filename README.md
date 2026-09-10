@@ -4,7 +4,7 @@ Knowledge repo for chats about ServiceNow. Two parts:
 
 | Part | Where | What |
 |---|---|---|
-| Contents map | `SNOW_Doc_contents_map.md` | Index of the local corpus `C:\Users\q407593\SNOW Doc` (24 files, 1.2 GB, not in this repo): which file and which page range answers a question. |
+| Contents map | `SNOW_Doc_contents_map.md` | Index of the local corpus `C:\Users\<user>\SNOW Doc` (24 files, 1.2 GB, not in this repo): which file and which page range answers a question. |
 | Release docs | `docs/<release>/` | Official ServiceNow release notes and release-to-release delta notes, as markdown, copied from the ServiceNow/ServiceNowDocs GitHub mirror. Currently `zurich` and `australia`. |
 
 ## Using it in a chat
