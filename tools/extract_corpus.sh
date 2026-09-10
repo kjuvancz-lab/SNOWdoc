@@ -173,4 +173,7 @@ for f in "$SRC"/*; do
     *) echo "skipped (unsupported): $name" >&2 ;;
   esac
 done
+# Redact example credentials printed in the manuals (GitHub push protection rejects them).
+find "$REPO_DIR"/docs/*/text -type f -name '*.md' -print0 | xargs -0 sed -i -E \
+  's/"ghp_[A-Za-z0-9_]{20,}"/"ghp_EXAMPLE_REDACTED"/g; s/^"[A-Za-z0-9]{40,}",$/"EXAMPLE_TOKEN_REDACTED",/'
 echo "done -> $REPO_DIR/docs/*/text/"
