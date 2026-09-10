@@ -222,7 +222,11 @@ Markdown copied from the official mirror github.com/ServiceNow/ServiceNowDocs (A
 | docs/australia/delta-yokohama-australia/ | 426 | `index.md` | Same, Yokohama → Australia (for skipping a release) |
 | docs/zurich/delta-yokohama-zurich/ | 383 | `index.md`, `rn-combined-intro.md` | What changed Yokohama → Zurich, one file per product: `zurich-yokohama-<product>-release-notes.md`. This is the Zurich release-notes set; the mirror has no separate Zurich release-notes folder. |
 | docs/zurich/zurich-prbsummary-release-notes/ | 2 | `index.md` | Zurich known-problem (PRB) summary |
+| docs/<release>/common-service-data-model-csdm/ | 57–59 | `csdm-landing-page.md`, `csdm-conceptual-model.md`, `csdm-to-cmdb-mapping.md`, `ci-relationships.md`, `csdm-term-definitions.md` | The official CSDM v5 product documentation: seven domains (foundation, ideation, design, build, service delivery = manage-tech-servs, service consumption = sell-consume, manage business services), CMDB table mapping, CI relationships, life-cycle fields and their mapping to asset and install base, implementation stages foundation/crawl/walk/run/fly, Dynamic CI Groups |
+| docs/<release>/csdm-topics/<product>/ | 33 | | CSDM guidance pages that live inside product docs: install base management (CSM), SPM, hardware asset management, DPM, incident form, GRC, EA modelling shapes, Impact accelerators |
 | docs/<release>/llms.txt | 1 each | | Upstream table of contents of the whole release family, with paths into the mirror for product docs not copied here |
+
+The CSDM 5 white paper (ServiceNow community PDF, copyright ServiceNow) is kept locally in `private/CSDM-5-white-paper.md`, which is gitignored and not published. Ask for it by that path in a Claude Code session in this repo.
 
 Routing: "what is new / what changed in Australia for product X" → `delta-zurich-australia/australia-zurich-<product>-release-notes.md`. "Upgrade planning" → `australia/release-notes/upgrades-*.md`. "Known issues" → patch notes and `zurich-prbsummary-release-notes`. Product behaviour and configuration → the PDFs in sections 2 to 4, not the release notes.
 
