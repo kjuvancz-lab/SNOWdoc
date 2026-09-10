@@ -43,8 +43,10 @@ for rel in "${RELEASES[@]}"; do
   commit="$(git rev-parse HEAD)"
 
   dest="$REPO_DIR/docs/$rel"
-  rm -rf "$dest"
+  # Remove only what this script manages. docs/<release>/text/ belongs to extract_corpus.sh.
   mkdir -p "$dest"
+  for f in "${FOLDERS[@]}"; do for d in "$dest"/$(basename "$f"); do [ -d "$d" ] && rm -rf "$d"; done; done
+  rm -rf "$dest/csdm-topics" "$dest/LICENSE" "$dest/UPSTREAM_README.md" "$dest/llms.txt" "$dest/SOURCE_COMMIT.txt"
   for f in "${FOLDERS[@]}"; do
     for d in markdown/$f; do
       [ -d "$d" ] && cp -r "$d" "$dest/$(basename "$d")"
