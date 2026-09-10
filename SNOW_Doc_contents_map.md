@@ -210,3 +210,18 @@ Missing sidecars (read via pdftotext instead): Zurich TNI, Yokohama TMT, Data Mo
 | What is a service / service offering | B (services-service-offerings), A1 Service Builder 2930–2940 |
 | AI agents / Now Assist for any product | the "Now Assist" chapter at the end of the product's doc |
 | Setting up a CoE, governance, roles | C (whitepaper) |
+
+## 7. Release documentation in this repo (`docs/`)
+
+Markdown copied from the official mirror github.com/ServiceNow/ServiceNowDocs (Apache 2.0). Refresh with `bash tools/update_docs.sh`. Upstream commit per release in `docs/<release>/SOURCE_COMMIT.txt`. No images; the canonical web page is in each file's front matter (`canonical_url`).
+
+| Folder | Files | Start here | Contents |
+|---|---|---|---|
+| docs/australia/release-notes/ | 347 | `index.md`, `rn-summary-highlights.md`, `new-features-changes.md` | Australia release notes. `rn-summary-*.md` (highlights, new features, changes, upgrade info, activation, plugins, deprecations, accessibility); `australia-patch-1..5.md` and hot-fix notes; `australia-security-notables.md`; `australia-summary-fixes.md`, `australia-all-other-fixes.md`; upgrade planning `upgrades-phase-1..7.md`, `upgrades-planning-checklist.md`, `upgrade-and-migration-tasks.md`; combined notes vs Zurich / Yokohama / Xanadu; sub-folder `release-notes/` with 280 per-product notes |
+| docs/australia/delta-zurich-australia/ | 426 | `index.md`, `rn-combined-intro.md` | What changed Zurich → Australia, one file per product: `australia-zurich-<product>-release-notes.md` (e.g. incidentmanagement, nowassistforitservicemanagementitsm, fieldservicemanagementfortelecommunication) |
+| docs/australia/delta-yokohama-australia/ | 426 | `index.md` | Same, Yokohama → Australia (for skipping a release) |
+| docs/zurich/delta-yokohama-zurich/ | 383 | `index.md`, `rn-combined-intro.md` | What changed Yokohama → Zurich, one file per product: `zurich-yokohama-<product>-release-notes.md`. This is the Zurich release-notes set; the mirror has no separate Zurich release-notes folder. |
+| docs/zurich/zurich-prbsummary-release-notes/ | 2 | `index.md` | Zurich known-problem (PRB) summary |
+| docs/<release>/llms.txt | 1 each | | Upstream table of contents of the whole release family, with paths into the mirror for product docs not copied here |
+
+Routing: "what is new / what changed in Australia for product X" → `delta-zurich-australia/australia-zurich-<product>-release-notes.md`. "Upgrade planning" → `australia/release-notes/upgrades-*.md`. "Known issues" → patch notes and `zurich-prbsummary-release-notes`. Product behaviour and configuration → the PDFs in sections 2 to 4, not the release notes.
