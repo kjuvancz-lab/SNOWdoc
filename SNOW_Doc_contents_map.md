@@ -3,7 +3,7 @@
 Source folder: `C:\Users\<user>\SNOW Doc` (flat, 24 files, 1.2 GB, read-only).
 Purpose of this file: tell a chat session which file, and which page range, answers a ServiceNow question. Nothing here is loaded in full; use the page ranges to read only what is needed.
 
-How to read a page range: `pdftotext -f <first> -l <last> -layout "<file>" -` or open the sidecar `.txt` (one form feed per page).
+How to read a page range: open the chapter file under `docs/<release>/text/<document>/` (section 8), or run `pdftotext -f <first> -l <last> -layout "<file>" -` on the PDF.
 
 ## 1. What is in the folder, by category
 
@@ -225,3 +225,28 @@ Markdown copied from the official mirror github.com/ServiceNow/ServiceNowDocs (A
 | docs/<release>/llms.txt | 1 each | | Upstream table of contents of the whole release family, with paths into the mirror for product docs not copied here |
 
 Routing: "what is new / what changed in Australia for product X" → `delta-zurich-australia/australia-zurich-<product>-release-notes.md`. "Upgrade planning" → `australia/release-notes/upgrades-*.md`. "Known issues" → patch notes and `zurich-prbsummary-release-notes`. Product behaviour and configuration → the PDFs in sections 2 to 4, not the release notes.
+
+## 8. Full text of the corpus in this repo (`docs/<release>/text/`)
+
+Every document of the local corpus is in the repo as chapter-sized markdown, filed under its release. Each document folder has a `00-index.md` listing its chapters with page ranges. Every chapter file starts with source file, release and page range, and every page boundary is marked `<!-- page N -->`, so the PDF page can be cited. Regenerate with `bash tools/extract_corpus.sh`.
+
+Routing rule: for any question in sections 2 to 4, open `docs/<release>/text/<document>/00-index.md`, pick the chapter whose page range matches the tables above, and read only that file.
+
+| Release | Document folder | Source | Chapter files | Size |
+|---|---|---|---|---|
+| yokohama | `docs/yokohama/text/telecom-media-technology` | servicenow-yokohama-telecom-media-technology-enus.pdf | 2 | 248 KB |
+| zurich | `docs/zurich/text/customer-service-management` | servicenow-zurich-customer-service-management-enus.pdf | 36 | 5308 KB |
+| zurich | `docs/zurich/text/it-asset-management` | servicenow-zurich-it-asset-management-enus.pdf | 34 | 5312 KB |
+| zurich | `docs/zurich/text/it-business-management` | servicenow-zurich-it-business-management-enus.pdf (Strategic Portfolio Management) | 46 | 4676 KB |
+| zurich | `docs/zurich/text/it-operations-management` | servicenow-zurich-it-operations-management-enus.pdf | 57 | 9760 KB |
+| zurich | `docs/zurich/text/it-service-management` | servicenow-zurich-it-service-management-enus.pdf | 71 | 7668 KB |
+| zurich | `docs/zurich/text/order-management` | servicenow-zurich-order-management-enus.pdf | 25 | 2728 KB |
+| zurich | `docs/zurich/text/spm-demand-management-workshop` | SPM - Demand Management - Process Workshop Presentation - Zurich.pptx (all slides + notes in one file) | 1 | 53 KB |
+| zurich | `docs/zurich/text/telecom-network-inventory` | servicenow-zurich-telecom-network-inventory-enus.pdf | 26 | 1268 KB |
+| australia | `docs/australia/text/order-management` | servicenow-australia-order-management-enus.pdf (Sales CRM) | 30 | 3360 KB |
+| australia | `docs/australia/text/telecom-media-technology` | servicenow-australia-telecom-media-technology-enus.pdf | 6 | 708 KB |
+| general | `docs/general/text/ai-coe-whitepaper` | Stand up and evolve a ServiceNow AI-Center of Excellence and Innovation.pdf | 6 | 224 KB |
+| general | `docs/general/text/servicenow-data-model-v3.4` | ServiceNow-Data-Model-v3.4.pdf | 1 | 261 KB |
+| general | `docs/general/text/services-service-offerings` | services-service-offerings.pdf | 1 | 13 KB |
+
+Not in the repo: `TMT CATALOG MODEL.avif` (image, no text) and the rtf duplicate of the Zurich order-management manual. The data-model PDF is diagrams; its text is fragmentary, use the PDF for the pictures.
